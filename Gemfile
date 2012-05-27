@@ -6,7 +6,7 @@ gem 'rails', '3.2.2'
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
 #gem 'sqlite3'
-
+gem 'execjs'
 
   #gem 'therubyracer-heroku', '0.8.1.pre3'
   gem 'pg'
