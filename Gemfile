@@ -7,8 +7,12 @@ gem 'rails', '3.2.2'
 
 #gem 'sqlite3'
 gem 'execjs'
-gem 'devise',           '>= 2.0.0'
-gem 'devise_invitable', '~> 1.0.0'
+#gem 'devise',           '>= 2.0.0'
+#gem 'devise_invitable', '~> 1.0.0'
+gem "devise", ">= 2.1.0"
+gem "devise_invitable", ">= 1.0.1"
+gem "cancan", ">= 1.6.7"
+gem "rolify", ">= 3.1.0"
 
   #gem 'therubyracer-heroku', '0.8.1.pre3'
   gem 'pg'
@@ -40,3 +44,4 @@ gem 'jquery-rails'
 
 # To use debugger
 # gem 'ruby-debug19', :require => 'ruby-debug'
+gem "simple_form"

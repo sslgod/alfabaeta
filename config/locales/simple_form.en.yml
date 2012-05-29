@@ -1,0 +1,40 @@
+en:
+  simple_form:
+    "yes": 'Yes'
+    "no": 'No'
+   
+    required:
+      text: 'required'
+      mark: '*'
+      # You can uncomment the line below if you need to overwrite the whole required html.
+      # When using html, text and mark won't be used.
+      # html: '<abbr title="required">*</abbr>'
+    error_notification:
+      default_message: "Please review the problems below:"
+      #Labels and hints examples
+      labels:
+        defaults:
+          password: 'Пароль'
+        user:
+          new:
+            email: 'E-mafil to sign in.'
+          edit:
+            password: 'Пароль'
+            email: 'E-maild.'
+      hints:
+        defaults:
+          username: 'User name to sign in.'
+          password: 'No special characters, please.'
+
+en:
+  activerecord:
+    attributes:
+      site:
+        name: Название
+        image: Картинка
+        public: Публикация
+        price: Сумма
+        seats: Призовых мест
+        winner: Победители
+        active_date: Активен до
+        created_at: Создан
