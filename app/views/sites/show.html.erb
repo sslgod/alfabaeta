@@ -1,28 +1,23 @@
+<head>
+   <!-- Our CSS stylesheet file -->
+        <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans+Condensed:300" />
+    
+        
+        <!--[if lt IE 9]>
+          <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
+</head>
+
 <%- model_class = @site.class -%>
 <div class="page-header">
-  <h1><%=t '.title', :default => model_class.model_name.human %></h1>
+  <h1><%= @site.name %></h1>
 </div>
 
-<dl class="dl-horizontal">
-  <dt><strong><%= model_class.human_attribute_name(:name) %>:</strong></dt>
-  <dd><%= @site.name %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:url) %>:</strong></dt>
-  <dd><%= @site.url %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:image) %>:</strong></dt>
-  <dd><%= @site.image %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:public) %>:</strong></dt>
-  <dd><%= @site.public %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:about) %>:</strong></dt>
-  <dd><%= @site.about %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:price) %>:</strong></dt>
-  <dd><%= @site.price %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:seats) %>:</strong></dt>
-  <dd><%= @site.seats %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:winner) %>:</strong></dt>
-  <dd><%= @site.winner %></dd>
-</dl>
+<div class='container'>
+  <div class='span6'>
+         <% if user_signed_in? %>
+    <% if current_user.has_role? :admin %>
 
-<div class="form-actions">
   <%= link_to t('.back', :default => t("helpers.links.back")),
               sites_path, :class => 'btn'  %>
   <%= link_to t('.edit', :default => t("helpers.links.edit")),
@@ -32,4 +27,31 @@
               :method => 'delete',
               :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')),
               :class => 'btn btn-danger' %>
+              
+<hr>
+<%end%>
+    <%end%>
+    <img src='<%= @site.image%>' alt='<%= @site.name%>'>
+  
+    <br><br>
+    <div class='row'>
+      <div class='span3'>
+        <h3>Бюджет: <%= @site.price %> рублей</h3>
+      </div>
+      <div class ='span3'>
+        <h3><%= @resdate%></h3> до завершения тестирования
+      </div>
+    </div>
+
+    
+  </div>
+  <div class='span4'>
+    <h2>Описание</h2>
+    <p><%= @site.about %></p><hr>
+    <button class="btn btn-large btn-success">Отправить отчет</button>
+  </div>
+  
 </div>
+<hr>
+  <h2>Комментарии</h2>
+

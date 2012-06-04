@@ -51,16 +51,12 @@
     <div class='row'>
       <div class='banner-black'><h2 align='center' style='color: white;'>Активные проекты</h2></div><br><br>
       <div class= 'project'>
-       <% @sites.each do |user| %>
-    <div class='span4'>
-      <a href='<%= user.url%>'><img src='<%= user.image%>' alt='<%= user.name%>'></a>
-    </div>
-      
-    
-  <% end %>   
-        
-    
-  </div>
+      <% @sites.each do |site| %>
+        <div class='span4'>
+          <a href='<%= site_path(site)%>'><img src='<%= site.image%>' alt='<%= site.name%>'></a>
+        </div>
+      <% end %>   
+      </div>
     </div>
   </section>
   
