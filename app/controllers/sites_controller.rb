@@ -19,11 +19,11 @@ class SitesController < ApplicationController
     
     @site = Site.find(params[:id])
   
-    @timenow =  Time.now
-   @pubdate  = (((Time.local(@site.active_date.year, @site.active_date.month, @site.active_date.day )).to_i)-((Time.local(@timenow.year, @timenow.month, @timenow.day )).to_i))/60/60/24
-   @day = day(@pubdate)
-   @excess = excess(@pubdate)
-   @resdate = @excess + ' ' + @pubdate.to_s + ' ' + @day
+   # @timenow =  Time.now
+   #@pubdate  = (((Time.local(@site.active_date.year, @site.active_date.month, @site.active_date.day )).to_i)-((Time.local(@timenow.year, @timenow.month, @timenow.day )).to_i))/60/60/24
+   #@day = day(@pubdate)
+   #@excess = excess(@pubdate)
+   @resdate = Time.now
     
     
     respond_to do |format|
