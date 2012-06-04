@@ -1,12 +1,4 @@
-<head>
-   <!-- Our CSS stylesheet file -->
-        <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans+Condensed:300" />
-    
-        
-        <!--[if lt IE 9]>
-          <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-        <![endif]-->
-</head>
+
 
 <%- model_class = @site.class -%>
 <div class="page-header">
@@ -31,15 +23,15 @@
 <hr>
 <%end%>
     <%end%>
-    <img src='<%= @site.image%>' alt='<%= @site.name%>'>
+    <a href='<%= @site.url %>'><img src='<%= @site.image%>' alt='<%= @site.name%>'></a>
   
     <br><br>
     <div class='row'>
       <div class='span3'>
-        <h3>Бюджет: <%= @site.price %> рублей</h3>
+        <h3>Бюджет: <%= @site.price %> рублей</h3>Призовых мест: <%= @site.seats %><br><% if @pubdate <= 0  %> Начался период определения победителей.<% end %>
       </div>
       <div class ='span3'>
-        <h3><%= @resdate%></h3> до завершения тестирования
+        <h3><%= @resdate%></h3> <% if @pubdate > 0 %>до завершения тестирования <% end %>
       </div>
     </div>
 
@@ -53,5 +45,34 @@
   
 </div>
 <hr>
-  <h2>Комментарии</h2>
+  <div class ='row'>
+  <div class ='span8'>
+  <h2>Комментарии</h2><br>
+  <div id='comments'>
+  <% @comments.each do |comment| %>
+  <strong><a href ='#'><%=comment.user.name %></a> <%= comment.created_at.in_time_zone('Europe/Moscow').to_s(:ru_datetime)%></strong><br>
+  <%=comment.body %><br><br>
+  
+  
+<% end %>
+<div id='addcomment'></div>
+</div>
+<div class='commentform'>
+<%= form_for @comment, :url => { :action => 'create', :controller => 'comments'}, :remote => true do |f| %>
+  
+  <%= f.text_area :body, :size => "1x6", :style => 'min-width: 724px;' %><br>
+  <%= f.submit "Добавить комментарий"%>
+<% end %>
+</div>
 
+</div>
+<div class='span4'>
+  <div class='well'>
+  <h3 align='center'>Смотрите так же</h3><hr>
+  <a href='#'><img src='<%= @site.image%>' alt='<%= @site.name%>'></a>
+  <a href='#'><img src='<%= @site.image%>' alt='<%= @site.name%>'></a>
+  </div>
+</div>  
+  
+  
+</div>

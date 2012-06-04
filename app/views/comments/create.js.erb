@@ -1,0 +1,3 @@
+$("#addcomment").html("<strong><a href ='#'><%=@comment.user.name %></a> <%= @comment.created_at.in_time_zone('Europe/Moscow').to_s(:ru_datetime)%></strong><br><%=@comment.body %><br><br></div><div id='addcomment'>");
+$("#addcomment").attr("id", "addcosxmment");
+$("#comment_body").val('');

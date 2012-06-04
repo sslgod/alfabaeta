@@ -1,8 +1,7 @@
 #encoding: utf-8
 class SitesController < ApplicationController
   include SitesHelper 
-  # GET /sites
-  # GET /sites.json
+
   def index
     authorize! :index, @user, :message => 'Извините, доступ к данному разделу запрещен.'
     @sites = Site.all
@@ -13,31 +12,42 @@ class SitesController < ApplicationController
     end
   end
 
-  # GET /sites/1
-  # GET /sites/1.json
+
+
+
+
+
+
   def show
     
     @site = Site.find(params[:id])
-  
+    @comment = Comment.new
+    @comments = @site.comments.all
+    
+    
+    
     @timenow =  Time.now
-   @pubdate  = (((Time.local(@site.active_date.year, @site.active_date.month, @site.active_date.day )).to_i)-((Time.local(@timenow.year, @timenow.month, @timenow.day )).to_i))/60/60/24
-   if @pubdate >0
-   @day = day(@pubdate)
-   @excess = excess(@pubdate)
-   @resdate = @excess+" "+(@pubdate.to_s)+" "+@day
-   else
-     @resdate = 'Тестирование завершено'
-   end
-    
-    
-    respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @site }
+    @pubdate = (((Time.local(@site.active_date.year, @site.active_date.month, @site.active_date.day )).to_i)-((Time.local(@timenow.year, @timenow.month, @timenow.day )).to_i))/60/60/24
+    if @pubdate >0
+      @day = day(@pubdate)
+      @excess = excess(@pubdate)
+      @resdate = @excess+" "+(@pubdate.to_s)+" "+@day
+    else
+      @resdate = 'Тестирование завершено'
     end
   end
+ 
+   
+   
+   
 
-  # GET /sites/new
-  # GET /sites/new.json
+
+  
+
+
+
+
+
   def new
     @site = Site.new
 
@@ -47,13 +57,15 @@ class SitesController < ApplicationController
     end
   end
 
-  # GET /sites/1/edit
+ 
+
+
   def edit
     @site = Site.find(params[:id])
   end
 
-  # POST /sites
-  # POST /sites.json
+
+
   def create
     @site = Site.new(params[:site])
 
@@ -68,8 +80,8 @@ class SitesController < ApplicationController
     end
   end
 
-  # PUT /sites/1
-  # PUT /sites/1.json
+
+
   def update
     @site = Site.find(params[:id])
 
@@ -84,8 +96,8 @@ class SitesController < ApplicationController
     end
   end
 
-  # DELETE /sites/1
-  # DELETE /sites/1.json
+
+
   def destroy
     @site = Site.find(params[:id])
     @site.destroy
@@ -95,4 +107,6 @@ class SitesController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+
 end

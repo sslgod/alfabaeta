@@ -1,4 +1,6 @@
 class User < ActiveRecord::Base
+  
+  has_many :comments;
 	rolify
   # Include default devise modules. Others available are:
   # :token_authenticatable, :confirmable,
@@ -8,4 +10,6 @@ class User < ActiveRecord::Base
 
   # Setup accessible (or protected) attributes for your model
   attr_accessible :name, :email, :password, :password_confirmation, :remember_me, :confirmed_at
+  
+  
 end
