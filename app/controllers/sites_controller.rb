@@ -21,9 +21,13 @@ class SitesController < ApplicationController
   
     @timenow =  Time.now
    @pubdate  = (((Time.local(@site.active_date.year, @site.active_date.month, @site.active_date.day )).to_i)-((Time.local(@timenow.year, @timenow.month, @timenow.day )).to_i))/60/60/24
+   if @pubdate
    @day = day(@pubdate)
    @excess = excess(@pubdate)
    @resdate = @excess+" "+(@pubdate.to_s)+" "+@day
+   else
+     @resdate = 'Тестирование завершено'
+   end
     
     
     respond_to do |format|
