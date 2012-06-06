@@ -14,14 +14,26 @@ class SitesController < ApplicationController
 
 
 
-
+  def createcomment
+     #@site = Site.find[params[:site_id]]
+     @comment = current_user.comments.new(params[:comment])
+     
+     @comment.site_id = (params[:site_id]) ;
+    if @comment.save
+      respond_to do |format|
+      format.js
+      
+    end
+    end
+    
+  end
 
 
 
   def show
     
     @site = Site.find(params[:id])
-    @comment = Comment.new
+    @comment = @site.comments.new
     @comments = @site.comments.all
     
     

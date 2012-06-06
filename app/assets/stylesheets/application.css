@@ -12,6 +12,13 @@
  *= require_tree .
 */
 
+
+
+div#openform{
+	display: none;
+}
+
+
 .banner-black{
     background: url('/assets/banner.png');
     height: 50px;
@@ -97,6 +104,7 @@
 	height:1.6em;
 	position:relative;
 }
+
 
 .countDiv:before,
 .countDiv:after{

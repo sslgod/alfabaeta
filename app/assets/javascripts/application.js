@@ -11,6 +11,11 @@
 // GO AFTER THE REQUIRES BELOW.
 //
 //
-//= require jquery_ujs
-//= require twitter/bootstrap
+//= require jquery
+//= require bootstrap
 //= require_tree .
+
+
+ $("#openformotchet").click(function() {
+ 	$("#openform").show();
+ });

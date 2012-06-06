@@ -40,15 +40,22 @@
   <div class='span4'>
     <h2>Описание</h2>
     <p><%= @site.about %></p><hr>
-    <button class="btn btn-large btn-success">Отправить отчет</button>
+    
+    <button class="btn btn-large btn-success" id='openformotchet'>Отправить отчет</button>
   </div>
   
 </div>
 <hr>
   <div class ='row'>
+    <div class ='span8' id = 'openform'><p>ddkdk</p></div>
   <div class ='span8'>
   <h2>Комментарии</h2><br>
   <div id='comments'>
+<script type="text/javascript">
+ $("#openformotchet").click(function() {
+  $("#openform").show();
+ });
+</script>
   <% @comments.each do |comment| %>
   <strong><a href ='#'><%=comment.user.name %></a> <%= comment.created_at.in_time_zone('Europe/Moscow').to_s(:ru_datetime)%></strong><br>
   <%=comment.body %><br><br>
@@ -59,10 +66,11 @@
 </div>
   <% if user_signed_in? %>
 <div class='commentform'>
-<%= form_for @comment, :url => { :action => 'create', :controller => 'comments'}, :remote => true do |f| %>
-  
+<%= form_for @comment,  :url => { :action => 'createcomment', :controller => 'sites', :site_id => @site.id}, :remote => true do |f| %>
+   
   <%= f.text_area :body, :size => "1x6", :style => 'min-width: 724px;' %><br>
-  <%= f.submit "Добавить комментарий"%>
+  <% @comment.site_id = @site.id %>
+  <%= f.submit "Добавить комментарий", :site_id => @site.id %>
 <% end %>
 </div>
 <% end %>

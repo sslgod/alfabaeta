@@ -1,4 +1,4 @@
-<%= simple_form_for @site, :html => { :class => 'form-horizontal' } do |f| %>
+<%= simple_form_for @site, :html => { :class => 'form-horizontal', :multipart => true } do |f| %>
   <%= f.input :name , :label => 'Название' %>
   <%= f.input :url, :label => 'Адресс' %>
   <%= f.input :image, :label => 'Адресс картинки' %>

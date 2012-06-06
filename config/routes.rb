@@ -11,5 +11,5 @@ Baeta::Application.routes.draw do
   root :to => "home#index"
   devise_for :users
   resources :users, :only => [:show, :index]
-  match 'createcomment'=> 'comments#create',:via => [:post]
+  match 'createcomment/:id'=> 'sites#createcomment',:via => [:post]
 end
