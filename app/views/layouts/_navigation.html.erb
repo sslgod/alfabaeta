@@ -7,7 +7,7 @@
     </li>
     <% if current_user.has_role? :admin %>
       <li>
-      <%= link_to 'Администрирование', users_path %>
+      <%= link_to 'Администрирование', sites_path %>
       </li>
     <% end %>
   <% else %>

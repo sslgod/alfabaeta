@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base
-  
+  has_many :reports
   has_many :comments;
 	rolify
   # Include default devise modules. Others available are:

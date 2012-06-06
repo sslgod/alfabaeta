@@ -5,6 +5,7 @@ class SitesController < ApplicationController
   def index
     authorize! :index, @user, :message => 'Извините, доступ к данному разделу запрещен.'
     @sites = Site.all
+    @users = User.all
 
     respond_to do |format|
       format.html # index.html.erb
@@ -33,6 +34,7 @@ class SitesController < ApplicationController
   def show
     
     @site = Site.find(params[:id])
+    @report = @site.reports.new
     @comment = @site.comments.new
     @comments = @site.comments.all
     

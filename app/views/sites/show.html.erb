@@ -40,14 +40,39 @@
   <div class='span4'>
     <h2>Описание</h2>
     <p><%= @site.about %></p><hr>
-    
-    <button class="btn btn-large btn-success" id='openformotchet'>Отправить отчет</button>
+    <% if user_signed_in? and @pubdate>0 %>
+    <button class="btn btn-large btn-success" id='openformotchet'>Добавить репорт</button>
+    <% else %>
+    <h3>Добавление репортов завершено</h3>
+    <% end %>
   </div>
   
 </div>
 <hr>
   <div class ='row'>
-    <div class ='span8' id = 'openform'><p>ddkdk</p></div>
+
+
+<% if user_signed_in? and @pubdate>0 %>
+<div class ='span12' id = 'openform'>
+  
+  <div class ='span8'>
+    <p>Оформеляйте свои репорты красиво в отдельном *.doc или *.pdf файле и загружайте на наш сервер. В поле комментарий указывайте комментарий к вашему файлу. Например, если вы собираетесь отправлять несколько репортов по данному проекту указывайте номер вашего репорта "Репорт №1". Так же это поле можно оставить пустым, и отправить только файл с репортом.</p>
+  <%= form_for @report,  :url => { :action => 'createreport', :controller => 'sites', :site_id => @site.id}, :remote => true do |f| %>
+      <h3>Комментарий к репорту</h3>
+      <%= f.text_area :comment, :size => "1x6", :style => 'min-width: 524px;' %><br>
+  
+      <%= f.submit "Отправить репорт", :site_id => @site.id %>
+  </div>
+    
+    <div class ='span3'><%= f.file_field :file %></div>
+  <% end %>
+</div>
+<% end %>
+
+
+
+
+
   <div class ='span8'>
   <h2>Комментарии</h2><br>
   <div id='comments'>
@@ -69,10 +94,12 @@
 <%= form_for @comment,  :url => { :action => 'createcomment', :controller => 'sites', :site_id => @site.id}, :remote => true do |f| %>
    
   <%= f.text_area :body, :size => "1x6", :style => 'min-width: 724px;' %><br>
-  <% @comment.site_id = @site.id %>
+  
   <%= f.submit "Добавить комментарий", :site_id => @site.id %>
-<% end %>
+
+
 </div>
+<% end %>
 <% end %>
 
 </div>
