@@ -6,7 +6,7 @@ gem 'rails', '3.2.2'
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
 #gem 'sqlite3'
-gem 'mysql2'
+#gem 'mysql2'
 gem 'execjs'
 #gem 'devise',           '>= 2.0.0'
 #gem 'devise_invitable', '~> 1.0.0'
@@ -16,7 +16,7 @@ gem "cancan", ">= 1.6.7"
 gem "rolify", ">= 3.1.0"
 
   #gem 'therubyracer-heroku', '0.8.1.pre3'
-  #gem 'pg'
+  gem 'pg'
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do 
